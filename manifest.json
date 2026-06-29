@@ -1,0 +1,9 @@
+{
+  "name": "8thstreettest",
+  "short_name": "8thstreet",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#05070b",
+  "theme_color": "#05070b",
+  "icons": []
+}
