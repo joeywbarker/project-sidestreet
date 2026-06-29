@@ -14,7 +14,6 @@ export class PlayerController {
     this.sprite = this.scene.add.sprite(320, 540, 'player');
     this.sprite.setOrigin(0.5, 0.5);
     this.sprite.setScale(2);
-    this.sprite.setPipeline('TextureTintPipeline');
     this.animation = new AnimationController(this.scene, this.sprite);
     this.sprite.anims.play('idle', true);
   }

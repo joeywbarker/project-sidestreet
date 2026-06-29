@@ -10,14 +10,15 @@ export class TestScene extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('background', 'assets/backgrounds/placeholder.png');
-    this.load.spritesheet('player', 'assets/sprites/player.png', { frameWidth: 32, frameHeight: 32 });
+    // No external assets required for the initial milestone build.
   }
 
   create() {
     this.cameras.main.setBackgroundColor('#111722');
     this.physics.world.setBounds(0, 0, GAME_CONFIG.worldWidth, GAME_CONFIG.worldHeight);
-    this.add.image(0, 0, 'background').setOrigin(0, 0).setScale(2);
+
+    this.add.rectangle(0, 0, GAME_CONFIG.worldWidth, GAME_CONFIG.worldHeight, 0x111722).setOrigin(0, 0);
+    this.createPlayerTexture();
     this.input.setTopOnly(true);
 
     this.inputManager = new InputManager(this);
@@ -40,6 +41,21 @@ export class TestScene extends Phaser.Scene {
     this.lastFps = 0;
     this.fpsCounter = 0;
     this.fpsTimer = 0;
+  }
+
+  createPlayerTexture() {
+    const graphics = this.make.graphics({ x: 0, y: 0, add: false });
+    graphics.clear();
+    graphics.fillStyle(0x111722, 1);
+    graphics.fillRect(0, 0, 32, 32);
+    graphics.fillStyle(0xffcc66, 1);
+    graphics.fillRect(2, 2, 28, 28);
+    graphics.fillStyle(0x111722, 1);
+    graphics.fillRect(8, 10, 6, 6);
+    graphics.fillRect(18, 10, 6, 6);
+    graphics.fillRect(10, 20, 12, 6);
+    graphics.generateTexture('player', 32, 32);
+    graphics.destroy();
   }
 
   update(time, delta) {
